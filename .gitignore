@@ -1,0 +1,37 @@
+# 環境変数・APIキー
+.env
+.env.*
+*.env
+secrets.txt
+api_key.txt
+
+# 会話ログ（個人情報含む可能性あり）
+logs/
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+.Python
+venv/
+.venv/
+env/
+*.egg-info/
+dist/
+build/
+*.egg
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Claude Code
+.claude/
