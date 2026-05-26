@@ -25,7 +25,7 @@ CHANNELS      = 1
 CHUNK_MS      = 100     # Audio chunk length in ms
 CHUNK_SIZE    = int(MIC_RATE * CHUNK_MS / 1000)
 SPEAKER_VOL   = 0.4     # Speaker volume (0.0-1.0, lower if distorted)
-MIC_GAIN      = 26.0    # Mic amplification (INMP441 output is very quiet)
+MIC_GAIN      = 8.0     # Mic amplification (INMP441 output is very quiet)
 
 # Conversation log directory
 LOG_DIR       = "/home/pi/doll-ai/logs"
