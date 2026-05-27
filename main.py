@@ -30,9 +30,9 @@ MIC_GAIN      = 8.0     # Mic amplification (INMP441 output is very quiet)
 # Conversation log directory
 LOG_DIR       = "/home/pi/doll-ai/logs"
 
-# I2S device (None = default from asound.conf)
-INPUT_DEVICE  = None
-OUTPUT_DEVICE = None
+# I2S device — use asound.conf plug devices directly (bypasses PulseAudio)
+INPUT_DEVICE  = 'doll_mic_raw'
+OUTPUT_DEVICE = 'doll_spk_raw'
 
 # --- Character prompt (for elementary school kids) --------------------
 SYSTEM_PROMPT = """
@@ -195,10 +195,12 @@ async def run_session(client: genai.Client):
                                 sc = response.server_content
                                 # Log input transcription (what user said)
                                 if hasattr(sc, 'input_transcription') and sc.input_transcription:
-                                    logger.log("USER", sc.input_transcription)
+                                    t = sc.input_transcription
+                                    logger.log("USER", t.text if hasattr(t, 'text') else str(t))
                                 # Log output transcription (what Gemini said)
                                 if hasattr(sc, 'output_transcription') and sc.output_transcription:
-                                    logger.log("KOUPEN", sc.output_transcription)
+                                    t = sc.output_transcription
+                                    logger.log("KOUPEN", t.text if hasattr(t, 'text') else str(t))
                                 # Check turn_complete to unmute mic
                                 if hasattr(sc, 'turn_complete') and sc.turn_complete:
                                     mic_muted = False
