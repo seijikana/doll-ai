@@ -105,6 +105,8 @@ async def run_session(client: genai.Client):
                 )
             )
         ),
+        input_audio_transcription=types.AudioTranscriptionConfig(),
+        output_audio_transcription=types.AudioTranscriptionConfig(),
     )
 
     mic_stream = None
